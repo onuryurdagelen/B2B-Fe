@@ -33,28 +33,33 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-info"></i>
+            <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">
+              <i class="fas fa-house text-info"></i>
+              <p>Home Page</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/admin/products" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">
+              <i class="fab fa-product-hunt text-info"></i>
               <p>Products</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-info"></i>
+            <a routerLink="/admin/price-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">
+              <i class="fas fa-hand-holding-usd text-info"></i>
               <p>Price List</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-info"></i>
+            <a routerLink="/admin/customer" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">
+              <i class="fas fa-user-friends text-info"></i>
               <p>Customers</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-info"></i>
+            <a routerLink="/admin/orders" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">
+              <i class="fas fa-truck-moving text-info"></i>
               <p>Orders</p>
             </a>
           </li>
