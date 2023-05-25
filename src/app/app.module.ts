@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import { authGuard } from './admin/guard/auth.guard';
 import { AuthService } from './admin/service/auth.service';
-import { UiLayoutsModule } from './ui/layouts/ui-layouts.module';
 import { UiModule } from './ui/ui.module';
+import { RegisterModule } from './common/register/register.module';
+import { LoginModule } from './common/login/login.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,11 @@ import { UiModule } from './ui/ui.module';
     BrowserModule,
     AppRoutingModule,
     AdminModule,
+    LoginModule,
     HttpClientModule,
-    UiModule
+    UiModule,
+    RegisterModule,
+    LoginModule
   ],
   providers: [AuthService,authGuard],
   bootstrap: [AppComponent]

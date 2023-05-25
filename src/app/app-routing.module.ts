@@ -9,12 +9,18 @@ import { UiHomeComponent } from './ui/home/home.component';
 import { UiBasketComponent } from './ui/basket/basket.component';
 import { ProductListComponent } from './ui/product-list/product-list.component';
 import { ProductDetailComponent } from './ui/product-detail/product-detail.component';
+import { RegisterComponent } from './common/register/register.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
     loadChildren: () => import('./common/login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    loadChildren: () => import('./common/register/register.module').then(m => m.RegisterModule)
   },
   {
     path: '',
