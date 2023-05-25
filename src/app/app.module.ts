@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import { authGuard } from './admin/guard/auth.guard';
 import { AuthService } from './admin/service/auth.service';
+import { UiLayoutsModule } from './ui/layouts/ui-layouts.module';
+import { UiModule } from './ui/ui.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { AuthService } from './admin/service/auth.service';
     BrowserModule,
     AppRoutingModule,
     AdminModule,
-    HttpClientModule
+    HttpClientModule,
+    UiModule
   ],
   providers: [AuthService,authGuard],
   bootstrap: [AppComponent]

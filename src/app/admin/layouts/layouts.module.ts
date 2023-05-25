@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavbarModule } from './navbar/navbar.module';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './footer/footer.module';
-import { LoginModule } from './login/login.module';
+
 
 const routes:Routes = [
   {

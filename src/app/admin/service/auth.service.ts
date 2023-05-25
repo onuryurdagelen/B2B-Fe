@@ -14,9 +14,9 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     if (localStorage.getItem("admin-token")) {
-      return true;
+      return false;
     }
-    return false;
+    return true;
   }
 
 }
