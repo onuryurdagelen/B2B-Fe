@@ -72,7 +72,6 @@ super(spinner)
       return;
 
     const result = await this.userService.create(user);
-    debugger;
     if(result.success)
      {
       this.alertify.show(result.message, {
@@ -86,6 +85,5 @@ super(spinner)
         position: Position.TopRight
       })
      }
-    debugger;
   }
 }

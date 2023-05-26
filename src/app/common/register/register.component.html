@@ -1,159 +1,157 @@
-<div class="row mt-3 align-items-center justify-content-center">
-    <div class="col-md-9 d-flex align-items-center justify-content-center">
-        <div class="register-box">
-            <div class="card card-outline card-primary">
-              <div class="card-header text-center">
-                <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+<body class="register-page" style="min-height: 570.781px;">
+  <div class="register-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a href="../../index2.html" class="h1"><b>B2B</b> - Register</a>
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">Register a new membership</p>
+  
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+          
+          <div class="input-group">
+            <input 
+            id="user-name" 
+            formControlName="nameSurname" 
+            type="text" 
+            class="form-control" 
+            [ngClass]="{'is-invalid': submitted && component['nameSurname'].errors}"
+            name="nameSurname" 
+            placeholder="Full name">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
               </div>
-              <div class="card-body">
-                <p class="login-box-msg">Register a new membership</p>
-          
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
-                  
-                  <div class="input-group">
-                    <input 
-                    id="user-name" 
-                    formControlName="nameSurname" 
-                    type="text" 
-                    class="form-control" 
-                    [ngClass]="{'is-invalid': submitted && component.nameSurname.errors}"
-                    name="nameSurname" 
-                    placeholder="Full name">
-                    <div class="input-group-append">
-                      <div class="input-group-text">
-                        <span class="fas fa-user"></span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="row mb-3">
-                    <small id="userNameHelp" 
-                    class="error invalid-feedback d-block position-relative" 
-                    *ngIf="submitted && component.nameSurname.errors?.required">Full Name cannot be null or empty.</small>
-                    <small class="error invalid-feedback d-block position-relative" 
-                    *ngIf="submitted && (component.nameSurname.errors?.maxlength || component.userName.errors?.minlength)">Please write your full name between 3 and 50 characters.</small>
-                  </div>
-                  
-                  
-                  
-                  
-                  <div class="input-group">
-                    <input 
-                    id="user-name" 
-                    formControlName="username" 
-                    type="text" 
-                    class="form-control" 
-                    [ngClass]="{'is-invalid': submitted && component.username.errors}"
-                    name="username" 
-                    placeholder="User Name">
-                    <div class="input-group-append">
-                      <div class="input-group-text">
-                        <span class="fas fa-user"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <small id="userNameHelp" 
-                    class="error invalid-feedback d-block position-relative" 
-                    *ngIf="submitted && component.username.errors?.required">Username cannot be null or empty.</small>
-                    <small class="error invalid-feedback d-block position-relative" 
-                    *ngIf="submitted && (component.username.errors?.maxlength || component.username.errors?.minlength)">Please write your username between 3 and 50 characters.</small>
-                  </div>
-                  <div class="input-group">
-                    <input id="email-address"  
-                    [ngClass]="{'is-invalid': submitted && component.email.errors}" 
-                    formControlName="email"  
-                    type="email" 
-                    class="form-control" 
-                    name="email" 
-                    placeholder="Email">
-                    <div class="input-group-append">
-                      <div class="input-group-text">
-                        <span class="fas fa-envelope"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <small 
-                    id="emailHelp" 
-                    class="error invalid-feedback d-block position-relative" 
-                    *ngIf="submitted && component.email.errors?.required" >Email Address cannot be null or empty.</small>
-                    <small 
-                    id="emailHelp" 
-                    class="error invalid-feedback d-block position-relative" 
-                    *ngIf="submitted && component.email.errors?.email">Please enter a valid email address.</small>
-                  
-                  </div>
-
-                  <div class="input-group">
-                    <input 
-                    id="password"
-                    [ngClass]="{'is-invalid': submitted && component.password.errors}" 
-                    formControlName="password" 
-                    type="password"
-                    class="form-control" 
-                    name="password" 
-                    placeholder="Password">
-                    <div class="input-group-append">
-                      <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <small id="userNameHelp" 
-                    class="error invalid-feedback d-block position-relative" 
-                    *ngIf="submitted && component.password.errors?.required">Password cannot be null or empty.</small>
-                  </div>
-                  <div class="input-group">
-                    <input 
-                    [ngClass]="{'is-invalid': submitted && component.passwordConfirm.errors}" 
-                    id="passwordConfirm" 
-                    formControlName="passwordConfirm"  type="password" class="form-control" name="passwordConfirm" placeholder="Confirm Password">
-                    <div class="input-group-append">
-                      <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <small 
-                    class="error invalid-feedback d-block position-relative" 
-                    *ngIf="submitted && registerForm.hasError('notSame')">Lütfen şifreyi doğrulayınız.</small>
-                  </div>
-                  <div class="row">
-                    <div class="col-8">
-                      <div class="icheck-primary">
-                        <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                        <label for="agreeTerms">
-                         I agree to the <a href="#">terms</a>
-                        </label>
-                      </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-4">
-                      <button type="submit" class="btn btn-primary btn-block">Register</button>
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                </form>
-          
-                <div class="social-auth-links text-center">
-                  <a href="#" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i>
-                    Sign up using Facebook
-                  </a>
-                  <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i>
-                    Sign up using Google+
-                  </a>
-                </div>
-          
-                <a href="login.html" class="text-center">I already have a membership</a>
-              </div>
-              <!-- /.form-box -->
-            </div><!-- /.card -->
+            </div>
           </div>
-    </div>
-   
-</div>
+          
+          <div class="row mb-3">
+            <small id="userNameHelp" 
+            class="error invalid-feedback d-block position-relative" 
+            *ngIf="submitted && component['nameSurname'].errors?.['nameSurname']">Full Name cannot be null or empty.</small>
+            <small class="error invalid-feedback d-block position-relative" 
+            *ngIf="submitted && (component['nameSurname'].errors?.['maxlength'] || component['userName'].errors?.['minlength'])">Please write your full name between 3 and 50 characters.</small>
+          </div>
+          
+          
+          
+          
+          <div class="input-group">
+            <input 
+            id="user-name" 
+            formControlName="username" 
+            type="text" 
+            class="form-control" 
+            [ngClass]="{'is-invalid': submitted && component['username'].errors}"
+            name="username" 
+            placeholder="User Name">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <small id="userNameHelp" 
+            class="error invalid-feedback d-block position-relative" 
+            *ngIf="submitted && component['username'].errors?.['required']">Username cannot be null or empty.</small>
+            <small class="error invalid-feedback d-block position-relative" 
+            *ngIf="submitted && (component['username'].errors?.['maxlength'] || component['username'].errors?.['minlength'])">Please write your username between 3 and 50 characters.</small>
+          </div>
+          <div class="input-group">
+            <input id="email-address"  
+            [ngClass]="{'is-invalid': submitted && component['email'].errors}" 
+            formControlName="email"  
+            type="email" 
+            class="form-control" 
+            name="email" 
+            placeholder="Email">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <small 
+            id="emailHelp" 
+            class="error invalid-feedback d-block position-relative" 
+            *ngIf="submitted && component['email'].errors?.['required']" >Email Address cannot be null or empty.</small>
+            <small 
+            id="emailHelp" 
+            class="error invalid-feedback d-block position-relative" 
+            *ngIf="submitted && component['email'].errors?.['email']">Please enter a valid email address.</small>
+          
+          </div>
+
+          <div class="input-group">
+            <input 
+            id="password"
+            [ngClass]="{'is-invalid': submitted && component['password'].errors}" 
+            formControlName="password" 
+            type="password"
+            class="form-control" 
+            name="password" 
+            placeholder="Password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <small id="userNameHelp" 
+            class="error invalid-feedback d-block position-relative" 
+            *ngIf="submitted && component['password'].errors?.['required']">Password cannot be null or empty.</small>
+          </div>
+          <div class="input-group">
+            <input 
+            [ngClass]="{'is-invalid': submitted && component['passwordConfirm'].errors}" 
+            id="passwordConfirm" 
+            formControlName="passwordConfirm"  type="password" class="form-control" name="passwordConfirm" placeholder="Confirm Password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <small 
+            class="error invalid-feedback d-block position-relative" 
+            *ngIf="submitted && registerForm.hasError('notSame')">Lütfen şifreyi doğrulayınız.</small>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <div class="icheck-primary">
+                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                <label for="agreeTerms">
+                 I agree to the <a href="#">terms</a>
+                </label>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+  
+        <div class="social-auth-links text-center">
+          <a href="#" class="btn btn-block btn-primary">
+            <i class="fab fa-facebook mr-2"></i>
+            Sign up using Facebook
+          </a>
+          <a href="#" class="btn btn-block btn-danger">
+            <i class="fab fa-google-plus mr-2"></i>
+            Sign up using Google+
+          </a>
+        </div>
+  
+        <a href="login.html" class="text-center">I already have a membership</a>
+      </div>
+      <!-- /.form-box -->
+    </div><!-- /.card -->
+  </div>
+</body>
+

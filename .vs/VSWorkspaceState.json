@@ -3,9 +3,9 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\admin\\layouts",
-    "\\src\\app\\ui"
+    "\\src\\app\\common",
+    "\\src\\app\\common\\register"
   ],
-  "SelectedNode": "\\src\\app\\common",
+  "SelectedNode": "\\src\\app\\common\\register\\register.component.html",
   "PreviewInSolutionExplorer": false
 }
