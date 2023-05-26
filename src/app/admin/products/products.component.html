@@ -1,0 +1,144 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" style="min-height: 1302px;">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6 d-flex justify-content-start">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Admin</a></li>
+            <li class="breadcrumb-item active">Products</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <!-- general form elements -->
+        <div class="col-md-3">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title"> <i class="fas fa-plus"></i> Add Product</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="productName">Product Name</label>
+                  <input #txtName type="text" class="form-control" id="productName" placeholder="Enter Product Name">
+                </div>
+                <div class="form-group">
+                  <label for="productPrice">Price</label>
+                  <input #txtPrice type="number" class="form-control" id="productPrice" placeholder="Enter Price">
+                </div>
+                <div class="form-group">
+                  <label for="productStock">Stock</label>
+                  <input #txtStock type="number" class="form-control" id="productStock" placeholder="Enter Stock">
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button class="btn btn-primary" type="button" (click)="create(txtName,txtStock,txtPrice)">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Products</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th *ngFor="let column of displayedProductColumns">{{column}}</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-id="{{product.id}}" #row *ngFor="let product of products | paginate : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: totalProductCount
+                };
+                let i = index">
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>{{ product.createdDate }}</td>
+                    <td>{{ product.updatedDate }}</td>
+                    <td>
+                      <button (click)="openProductFileDialog(product.id)" class="btn btn-light">
+                        <span><i class="fas fa-image"></i></span>
+                      </button>
+                    </td>
+                    <td>
+                      <div class="col-10">
+                        <div class="row">
+                          <div class="col-6">
+                            <a class="btn btn-sm btn-danger"
+                               appDelete
+                               [id]="product.id"
+                               (Callback)="getProducts()"
+                               [deleteParams]="deleteParams">
+                              <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                          </div>
+                          <div class="col-6">
+                            <a class="btn btn-sm btn-info" appUpdate>
+                              <i class="fas fa-edit"></i> Edit
+                            </a>
+                          </div>
+                        </div>
+
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row justify-content-end mt-2">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-6">
+                      Items per Page:
+                      <select (change)="onTableSizeChange($event)">
+                        <option *ngFor="let size of tableSizes" ngValue="tableSize">
+                          {{ size }}
+                        </option>
+                      </select>
+
+                      {{totalProductCount}}
+                    </div>
+                    <!-- <div class="col-md-6">{{between1}} - {{between2}} of 26</div> -->
+                  </div>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                  <pagination-controls previousLabel="Prev"
+                                       nextLabel="Next"
+                                       (pageChange)="onTableDataChange($event)">
+                  </pagination-controls>
+                </div>
+
+              </div>
+
+
+
+              <!--</div>-->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>

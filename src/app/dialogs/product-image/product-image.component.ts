@@ -8,7 +8,6 @@ import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerType } from '../../base/base.component';
 import { ProductImageFileVM } from '../../contracts/productImage-file';
 import { ClientDataResponse } from '../../response/client-data-response';
-import { Res } from '@nestjs/common';
 import { HttpclientService } from '../../services/common/httpclient.service';
 import { ClientResponse } from '../../response/client-response';
 import { AlertifyService, MessageType, Position } from '../../services/admin/alertify.service';

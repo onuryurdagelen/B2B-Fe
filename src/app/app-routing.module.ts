@@ -4,12 +4,16 @@ import { LayoutsComponent } from './admin/layouts/layouts.component';
 import { UiLayoutsComponent } from './ui/layouts/ui-layouts.component';
 import { HomeComponent } from './admin/home/home.component';
 import { LoginComponent } from './common/login/login.component';
-import { authGuard } from './admin/guard/auth.guard';
 import { UiHomeComponent } from './ui/home/home.component';
 import { UiBasketComponent } from './ui/basket/basket.component';
 import { ProductListComponent } from './ui/product-list/product-list.component';
 import { ProductDetailComponent } from './ui/product-detail/product-detail.component';
 import { RegisterComponent } from './common/register/register.component';
+import { ProductsComponent } from './admin/products/products.component';
+import { CustomersComponent } from './admin/customers/customers.component';
+import { OrdersComponent } from './admin/orders/orders.component';
+import { UsersComponent } from './admin/users/users.component';
+import { RolesComponent } from './admin/roles/roles.component';
 
 const routes: Routes = [
   {
@@ -24,7 +28,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    canActivateChild: [authGuard],
     component: UiLayoutsComponent,
     children: [
       {
@@ -51,14 +54,38 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivateChild:[authGuard],
     component:LayoutsComponent,
     children:[
       {
         path:'',
         component:HomeComponent,
         loadChildren:() => import('./admin/home/home.module').then(m => m.HomeModule)
-      }
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+        loadChildren:() => import('./admin/products/products.module').then(m => m.ProductsModule)
+      },
+      {
+        path: 'customers',
+        component: CustomersComponent,
+        loadChildren: () => import('./admin/customers/customers.module').then(m => m.CustomersModule)
+      },
+      {
+        path: 'orders',
+        component: OrdersComponent,
+        loadChildren: () => import('./admin/orders/orders.module').then(m => m.OrdersModule)
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        loadChildren: () => import('./admin/users/users.module').then(m => m.UsersModule)
+      },
+      {
+        path: 'roles',
+        component: RolesComponent,
+        loadChildren: () => import('./admin/roles/roles.module').then(m => m.RolesModule)
+      },
     ]
   }
 ];
