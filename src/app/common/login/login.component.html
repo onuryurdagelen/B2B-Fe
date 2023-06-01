@@ -1,16 +1,16 @@
 <body class="login-page" style="min-height: 496.781px;">
   <div class="login-box">
-    <div class="login-logo">
-      <a href="#" class="h1"><b>B2B</b> - Login</a>
-    </div>
     <!-- /.login-logo -->
-    <div class="card">
-      <div class="card-body login-card-body">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a class="h1"><b>Admin</b>LTE</a>
+      </div>
+      <div class="card-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form >
+        <form>
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email">
+            <input #txtUsernameOrEmail type="text" class="form-control" placeholder="Username or email address">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password">
+            <input #txtPassword type="password" class="form-control" placeholder="Password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -36,13 +36,13 @@
             </div>
             <!-- /.col -->
             <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+              <button type="button" (click)="login(txtUsernameOrEmail.value,txtPassword.value)" class="btn btn-primary btn-block">Sign In</button>
             </div>
             <!-- /.col -->
           </div>
         </form>
-        <div class="social-auth-links text-center mb-3">
-          <p>- OR -</p>
+
+        <div class="social-auth-links text-center mt-2 mb-3">
           <a href="#" class="btn btn-block btn-primary">
             <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
           </a>
@@ -50,6 +50,8 @@
             <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
           </a>
         </div>
+        <!-- /.social-auth-links -->
+
         <p class="mb-1">
           <a href="forgot-password.html">I forgot my password</a>
         </p>
@@ -57,8 +59,9 @@
           <a href="register.html" class="text-center">Register a new membership</a>
         </p>
       </div>
-      <!-- /.login-card-body -->
+      <!-- /.card-body -->
     </div>
+    <!-- /.card -->
   </div>
 </body>
 

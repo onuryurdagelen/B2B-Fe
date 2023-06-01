@@ -57,6 +57,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+
               <table class="table">
                 <thead>
                   <tr>
@@ -66,8 +67,8 @@
                 </thead>
                 <tbody>
                   <tr data-id="{{product.id}}" #row *ngFor="let product of products | paginate : {
-                  itemsPerPage: tableSize,
-                  currentPage: page,
+                  itemsPerPage: pageSize,
+                  currentPage: pagination,
                   totalItems: totalProductCount
                 };
                 let i = index">
@@ -106,32 +107,119 @@
                 </tbody>
               </table>
               <div class="row justify-content-end mt-2">
-                <div class="col-md-6">
-                  <div class="row">
-                    <div class="col-md-6">
-                      Items per Page:
-                      <select (change)="onTableSizeChange($event)">
-                        <option *ngFor="let size of tableSizes" ngValue="tableSize">
-                          {{ size }}
-                        </option>
-                      </select>
-
-                      {{totalProductCount}}
-                    </div>
-                    <!-- <div class="col-md-6">{{between1}} - {{between2}} of 26</div> -->
-                  </div>
+                <div class="col-md-6 d-flex justify-content-end mt-2">
+                  <nav aria-label="...">
+                    <ul class="pagination justify-content-end">
+                      <li class="page-item">
+                        <a class="page-link"
+                           (click)="handlePreviousEvent()"
+                           [ngClass]="{'disabled': pagination===1}">Previous</a>
+                      </li>
+                      <li *ngFor='let item of paginationArr'
+                          class="page-item"
+                          [ngClass]="{'active': item===pagination}"
+                          (click)="handlePageEvent($event)"><a class="page-link">{{item}}</a></li>
+                      <!--<li class="page-item active">
+          <a class="page-link">2 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item"><a class="page-link">3</a></li>-->
+                      <li class="page-item">
+                        <a class="page-link"
+                           (click)="handleNextEvent()"
+                           [ngClass]="{'disabled': pagination===paginationArr.length}">Next</a>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
-                <div class="col-md-6 d-flex justify-content-end">
-                  <pagination-controls previousLabel="Prev"
-                                       nextLabel="Next"
-                                       (pageChange)="onTableDataChange($event)">
-                  </pagination-controls>
-                </div>
-
               </div>
 
+              <!--<table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="stock">
+      <th mat-header-cell *matHeaderCellDef> Stock </th>
+      <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdDate">
+      <th mat-header-cell *matHeaderCellDef> Created Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updatedDate">
+      <th mat-header-cell *matHeaderCellDef> Updated Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.updatedDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef width="30">  </th>
+      <td mat-cell *matCellDef="let element">
+        <a class="btn btn-sm btn-info" appUpdate>
+          <i class="fas fa-edit"></i> Edit
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th
+          mat-header-cell
+          *matHeaderCellDef width="30"></th>
+      <td mat-cell *matCellDef="let element">
+        <a class="btn btn-sm btn-danger"
+           appDelete
+           [id]="element.id"
+           (Callback)="getProducts()"
+           [deleteParams]="deleteParams">
+          <i class="fas fa-trash-alt"></i> Delete
+        </a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
 
+  <mat-paginator
+                 #paginator
+                 (page)="pageChanged()"
+                 [pageSizeOptions]="pageSizeOptions"
+                  [showFirstLastButtons]="showFirstLastButtons"
+
+                 aria-label="Select page">
+  </mat-paginator>-->
+              <!--<div class="row justify-content-end mt-2">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          Items per Page:
+          <select (change)="onTableSizeChange($event)">
+            <option *ngFor="let size of tableSizes" ngValue="tableSize">
+              {{ size }}
+            </option>
+          </select>
+
+          {{totalProductCount}}
+        </div>
+              </div>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <pagination-controls previousLabel="Prev"
+                           nextLabel="Next"
+                           (pageChange)="onTableDataChange($event)">
+      </pagination-controls>
+    </div>
+
+  </div>-->
               <!--</div>-->
             </div>
             <!-- /.card -->

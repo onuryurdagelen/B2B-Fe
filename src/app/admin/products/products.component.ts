@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Output, ViewChildren } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output, ViewChild, ViewChildren } from '@angular/core';
 declare let $: any;
 
 import { Subject } from 'rxjs';
@@ -15,7 +15,8 @@ import { DialogService } from '../../services/common/dialog.service';
 import { ProductImageComponent, ProductImageDialogState } from '../../dialogs/product-image/product-image.component';
 import { ListProductVM } from '../../contracts/list-product';
 import { AlertifyService,MessageType,Position } from '../../services/admin/alertify.service';
-
+import { MatTableDataSource, _MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -45,16 +46,10 @@ export class ProductsComponent extends BaseComponent implements OnInit, OnDestro
   };
 
   products: ListProductVM[];
-  paginationCount: number[] = [];
   dtOptions: DataTables.Settings = {};
   totalProductCount: number;
-  pagination: number;
 
   //table infos
-  page: number = 1;
-  count: number = 0;
-  tableSize: number = 5;
-  tableSizes: any = [5, 10, 15];
 
 
   constructor(spinner: NgxSpinnerService,
@@ -67,8 +62,70 @@ export class ProductsComponent extends BaseComponent implements OnInit, OnDestro
 
   }
 
+  //Material Paginator
+
+  length = 50;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
+
+  hidePageSize = false;
+  showPageSizeOptions = true;
+  showFirstLastButtons = true;
+  disabled = false;
+
+  pageEvent: PageEvent;
+
+
+  //bootstrap pagination
+  paginationArr: number[] = [];
+  pagination: number = 1;
+  pageSize: number = 5;
+  currentPage: number = 1;
+
+  async handlePageEvent($event) {
+    console.log($event.target.innerHTML);
+    this.pagination = parseInt($event.target.innerHTML);
+    await this.getProducts();
+  }
+  async handlePreviousEvent()
+  {
+    this.pagination -= 1;
+    await this.getProducts();
+  }
+  async handleNextEvent()
+  {
+    this.pagination += 1;
+    await this.getProducts();
+  }
+  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'updatedDate','delete','edit'];
+  dataSource: MatTableDataSource<ListProductVM> = null;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  async ngOnInit(): Promise<void> {
+
+    /* GET ALL PRODUCTS STARTS HERE*/
+    this.showSpinner(SpinnerType.BallAtom);
+    await this.getProducts();
+    let paginationCount: number = this.totalProductCount / this.pageSize;
+
+    for (var i = 1; i <= paginationCount; i++) {
+      this.paginationArr.push(i);
+    }
+    if (this.totalProductCount % this.pageSize) {
+      this.paginationArr.push(this.paginationArr.length + 1);
+    }
+    console.log(this.paginationArr.length);
+    /* GET ALL PRODUCTS ENDS HERE*/
+  }
+
+  ngOnDestroy(): void {
+  }
+  async pageChanged() {
+    await this.getProducts();
+  }
   async getProducts() {
-    const result: ClientDataResponse<ProductVM> = await this.productService.read({ page: this.page - 1, size: 5 }, () => this.hideSpinner(SpinnerType.BallAtom),
+    const result: ClientDataResponse<ProductVM> = await this.productService.read({ page: this.pagination - 1, size: this.pageSize },
+      () => this.hideSpinner(SpinnerType.BallAtom),
       (errorMessage: string) => {
         this.hideSpinner(SpinnerType.BallAtom);
         this.alertify.show(errorMessage, {
@@ -77,21 +134,13 @@ export class ProductsComponent extends BaseComponent implements OnInit, OnDestro
         })
       });
     this.products = result.data.products;
-    this.totalProductCount = this.products.length;
+    this.totalProductCount = result.data.totalCount;
+    //this.dataSource = new MatTableDataSource<ListProductVM>(result.data.products);
+    //this.paginator.length = this.totalProductCount;
+
+    
   }
 
-  async ngOnInit(): Promise<void> {
-
-
-    /* GET ALL PRODUCTS STARTS HERE*/
-    this.showSpinner(SpinnerType.BallAtom);
-    await this.getProducts();
-
-    /* GET ALL PRODUCTS ENDS HERE*/
-  }
-
-  ngOnDestroy(): void {
-  }
 
   create(txtName: HTMLInputElement, txtPrice: HTMLInputElement, txtStock: HTMLInputElement) {
     //this.productService.create()
@@ -114,15 +163,6 @@ export class ProductsComponent extends BaseComponent implements OnInit, OnDestro
         position: Position.TopRight
       })
     });
-  }
-  async onTableDataChange(event: any) {
-    this.page = event;
-    await this.getProducts();
-  }
-  async onTableSizeChange(event: any): Promise<void> {
-    this.tableSize = event.target.value;
-    this.page = 1;
-    await this.getProducts();
   }
 
   async openProductFileDialog(id: string) {

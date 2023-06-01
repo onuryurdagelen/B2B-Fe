@@ -3,8 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\common",
-    "\\src\\app\\common\\register"
+    "\\src\\app\\admin",
+    "\\src\\app\\admin\\home",
+    "\\src\\app\\admin\\layouts",
+    "\\src\\app\\admin\\layouts\\navbar",
+    "\\src\\app\\admin\\layouts\\sidebar",
+    "\\src\\app\\admin\\products",
+    "\\src\\app\\constants"
   ],
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }

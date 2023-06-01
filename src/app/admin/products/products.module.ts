@@ -10,7 +10,12 @@ import { FileUploadModule } from 'src/app/services/common/file-upload/file-uploa
 import { FileUploadDialogComponent } from '../../dialogs/file-upload-dialog/file-upload-dialog.component';
 import { DialogModule } from 'src/app/dialogs/dialog.module';
 import { UpdateDirective } from 'src/app/directives/admin/update.directive';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSidenavModule } from '@angular/material/sidenav';
 const routes: Routes = [
   {
     path: '',
@@ -28,7 +33,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     NgxPaginationModule,
-    MatDialogModule,
+    MatSidenavModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatPaginatorModule,
     DialogModule,
     FileUploadModule,
     RouterModule.forChild(routes)

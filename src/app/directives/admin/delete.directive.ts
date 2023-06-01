@@ -33,7 +33,6 @@ export class DeleteDirective extends BaseComponent{
   @HostListener('click')
   async onClick() {
     console.log("delete directive running...");
-    debugger;
     this.dialogService.openDialog({
       componentType: DeleteDialogComponent,
       data: DeleteState.Yes,

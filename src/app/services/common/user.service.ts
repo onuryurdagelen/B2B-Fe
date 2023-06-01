@@ -42,6 +42,7 @@ export class UserService {
     const result:ClientDataResponse<Token> = await firstValueFrom(observable);
     if(result.data)
     {
+
     localStorage.setItem("accessToken",result.data.accessToken);
     localStorage.setItem("refreshToken",result.data.refreshToken);
     localStorage.setItem("token_expirationTime",result.data.expirationTime.toString());

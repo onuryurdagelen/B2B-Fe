@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserAnimationsModule,
     NgxSpinnerModule.forRoot({type: 'ball-atom'}),
     DataTablesModule,
+    NgxDatatableModule,
     NgxPaginationModule,
     ToastrModule.forRoot(),
     RegisterModule,
