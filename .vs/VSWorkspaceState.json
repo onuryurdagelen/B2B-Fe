@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\admin",
-    "\\src\\app\\admin\\home",
-    "\\src\\app\\admin\\layouts",
-    "\\src\\app\\admin\\layouts\\navbar",
-    "\\src\\app\\admin\\layouts\\sidebar",
-    "\\src\\app\\admin\\products",
-    "\\src\\app\\constants"
+    "\\src\\app\\common",
+    "\\src\\app\\common\\login",
+    "\\src\\app\\constants",
+    "\\src\\app\\services",
+    "\\src\\app\\ui",
+    "\\src\\app\\ui\\home",
+    "\\src\\app\\ui\\layouts"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\ui\\layouts\\ui-layouts.component.html",
   "PreviewInSolutionExplorer": false
 }

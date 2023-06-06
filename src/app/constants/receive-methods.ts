@@ -1,3 +1,4 @@
 export enum ReceiveMethods {
-  ReceiveProductAddedMessage = "receiveProductAddedMessage"
+  ReceiveProductAddedMessage = "receiveProductAddedMessage",
+  userJoined = "userJoined"
 }

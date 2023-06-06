@@ -26,13 +26,14 @@ export class LoginComponent  extends BaseComponent{
   }
 
   async login(usernameOrEmail: string, password: string) {
+    debugger;
     this.showSpinner(SpinnerType.BallAtom);
     await this.userService.login(usernameOrEmail, password,
       () => {
         this.authService.identityCheck();
         this.activatedRoute.queryParams.subscribe(params => {
           const returnUrl: string = params["returnUrl"];
-
+          debugger;
           if (returnUrl)
             this.router.navigate([returnUrl])
         })

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
@@ -13,7 +13,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttperrorhandlerinterceptorService } from './services/common/httperrorhandlerinterceptor.service';
 import { ToastrModule } from 'ngx-toastr';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import {  NgxSpinnerModule } from 'ngx-spinner';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -30,6 +30,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     HttpClientModule,
     UiModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     NgxSpinnerModule.forRoot({type: 'ball-atom'}),
     DataTablesModule,
     NgxDatatableModule,
@@ -45,6 +46,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
       }
     })
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     AuthService,
     { provide: "baseUrl", useValue: "https://localhost:7107/api",multi:true},

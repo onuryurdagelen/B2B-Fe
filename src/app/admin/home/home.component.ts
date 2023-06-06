@@ -19,14 +19,14 @@ export class HomeComponent  extends BaseComponent implements OnInit{
     private signalrService: SignalRService
   ) {
     super(spinner);
-    signalrService.start(HubUrls.ProductHub);
+    //signalrService.start(HubUrls.ProductHub);
   }
 
   ngOnInit(): void {
     this.signalrService.on(HubUrls.ProductHub, ReceiveMethods.ReceiveProductAddedMessage, message => {
       this.alertify.show(message, {
         messageType: MessageType.NOTIFY,
-        position: Position.TopRight
+        position: Position.BottomRight
       })
     });
     

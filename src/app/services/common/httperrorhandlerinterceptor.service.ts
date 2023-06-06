@@ -1,6 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
+import { CustomHttpStatusCodes } from '../../constants/custom-http-errors';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../ui/custom-toastr.service';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
@@ -12,7 +13,9 @@ export class HttperrorhandlerinterceptorService implements HttpInterceptor{
 
   constructor(private toastrService:CustomToastrService,private userService:UserService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    debugger;
     return next.handle(req).pipe(catchError(error => {
+     
     switch(error.status){
       case HttpStatusCode.Unauthorized:
         this.toastrService.message("You are not authorized to perform this action.","Invalid authorized!",{
@@ -25,6 +28,12 @@ export class HttperrorhandlerinterceptorService implements HttpInterceptor{
         });
 
         break;
+      case HttpStatusCode.Forbidden:
+        this.toastrService.message(error.error.Message, error.error.Title, {
+          position: ToastrPosition.TOPRIGHT,
+          messageType: ToastrMessageType.WARNING
+        });
+        break;
       case HttpStatusCode.InternalServerError:
         this.toastrService.message(error.error.Message,error.error.Title,{
           position:ToastrPosition.TOPRIGHT,
@@ -32,19 +41,25 @@ export class HttperrorhandlerinterceptorService implements HttpInterceptor{
         });
         break;
       case HttpStatusCode.BadRequest:
-        this.toastrService.message("Invalid request error occured.","Invalid Requet Error!",{
+        this.toastrService.message(error.error.Message, error.error.Title,{
           position:ToastrPosition.TOPRIGHT,
           messageType:ToastrMessageType.WARNING
         });
         break;
       case HttpStatusCode.NotFound:
-        this.toastrService.message("Page not found.","Page Not Found Error!",{
+        this.toastrService.message(error.error.Message, error.error.Title,{
           position:ToastrPosition.TOPRIGHT,
           messageType:ToastrMessageType.WARNING
         });
         break;
+      case CustomHttpStatusCodes.UserCreateFailed:
+        this.toastrService.message(error.error.Message, error.error.Title, {
+          position: ToastrPosition.TOPRIGHT,
+          messageType: ToastrMessageType.WARNING
+        });
+        break;
       default:
-        this.toastrService.message("Something went wrong.","Error!",{
+        this.toastrService.message(error.error.Message, error.error.Title,{
           position:ToastrPosition.TOPRIGHT,
           messageType:ToastrMessageType.WARNING
         });

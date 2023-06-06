@@ -38,7 +38,6 @@ export class HttpclientService {
     else
       url = `${this.generateUrl(requestParameters)}${requestParameters.queryString ? `?${requestParameters.queryString}` : ""}`
     return this.httpClient.post<TResponse>(url, body, { headers: requestParameters.headers});
-    debugger;
   }
   put<TRequest,TResponse>(requestParameters:Partial<RequestParameters>,body:Partial<TRequest>)
   :Observable<TResponse>

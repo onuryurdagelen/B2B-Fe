@@ -24,6 +24,17 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 })
 export class ProductsComponent extends BaseComponent implements OnInit, OnDestroy {
 
+  constructor(spinner: NgxSpinnerService,
+    private productService: ProductService,
+    private alertify: AlertifyService,
+    private dialogService: DialogService<ProductImageComponent>
+
+  ) {
+    super(spinner);
+
+  }
+
+
   displayedProductColumns: string[] =
     ["Name",
       "Stock",
@@ -52,15 +63,7 @@ export class ProductsComponent extends BaseComponent implements OnInit, OnDestro
   //table infos
 
 
-  constructor(spinner: NgxSpinnerService,
-    private productService: ProductService,
-    private alertify: AlertifyService,
-    private dialogService: DialogService<ProductImageComponent>
-
-  ) {
-    super(spinner);
-
-  }
+ 
 
   //Material Paginator
 
@@ -105,7 +108,8 @@ export class ProductsComponent extends BaseComponent implements OnInit, OnDestro
 
     /* GET ALL PRODUCTS STARTS HERE*/
     this.showSpinner(SpinnerType.BallAtom);
-    await this.getProducts();
+    setTimeout(async () => { await this.getProducts(); }, 1000);
+    
     let paginationCount: number = this.totalProductCount / this.pageSize;
 
     for (var i = 1; i <= paginationCount; i++) {
