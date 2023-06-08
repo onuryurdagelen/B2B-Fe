@@ -1,1 +1,41 @@
-<p>product-list works!</p>
+<div class="row">
+  <div class="col-md-3" *ngFor="let product of products;">
+    <div class="card">
+      <img class="card-img-top" src="../../../assets/images/default-product.png" alt="Card image cap" width="100%" height="100%">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text">{{product.price | currency}} | Stock: {{product.stock}}</p>
+        <a href="#" class="btn btn-primary">Add to cart</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-end mt-2">
+  <div class="col-md-6 d-flex justify-content-end mt-2">
+    <nav aria-label="...">
+      <ul class="pagination justify-content-end">
+        <li class="page-item">
+          <a class="page-link"
+             (click)="handlePreviousEvent()"
+             [ngClass]="{'disabled': currentPage===1}">Previous</a>
+        </li>
+        <li *ngFor='let item of paginationArr'
+            class="page-item"
+            [ngClass]="{
+            'active': item===currentPage,
+            'd-none':checkItemVisible(item,currentPage)
+            }"
+            (click)="handlePageEvent($event,item)"><a class="page-link">{{item}}</a></li>
+        <!--<li class="page-item active">
+          <a class="page-link">2 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item"><a class="page-link">3</a></li>-->
+        <li class="page-item">
+          <a class="page-link"
+             (click)="handleNextEvent()"
+             [ngClass]="{'disabled': currentPage===paginationArr.length}">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -13,7 +13,6 @@ export class HttperrorhandlerinterceptorService implements HttpInterceptor{
 
   constructor(private toastrService:CustomToastrService,private userService:UserService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    debugger;
     return next.handle(req).pipe(catchError(error => {
      
     switch(error.status){

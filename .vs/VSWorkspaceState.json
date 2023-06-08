@@ -3,13 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\common",
-    "\\src\\app\\common\\login",
-    "\\src\\app\\constants",
+    "\\src\\app\\admin",
     "\\src\\app\\services",
+    "\\src\\app\\services\\common",
     "\\src\\app\\ui",
-    "\\src\\app\\ui\\home",
-    "\\src\\app\\ui\\layouts"
+    "\\src\\app\\ui\\layouts",
+    "\\src\\app\\ui\\layouts\\sidebar",
+    "\\src\\assets",
+    "\\src\\assets\\images"
   ],
   "SelectedNode": "\\src\\app\\ui\\layouts\\ui-layouts.component.html",
   "PreviewInSolutionExplorer": false
